@@ -1,0 +1,83 @@
+<ion-content padding class="Authentication-Form" overflow-scroll="false">
+  <ng-container *ngIf="getcountriescodes.length != 0">
+    <div class="logo animated bounceInDown">
+      <img src="./assets/imgs/rafal-logo.png">
+    </div>
+
+    <form class="{{'ArabicOrEnglishForm' | translate}}" [formGroup]="myForm" (ngSubmit)="login()">
+      <ion-list>
+
+        <!-- <ion-item class="item1 animated bounceInUp">
+        <ion-label floating>
+          <ion-icon name="ios-phone-portrait-outline"></ion-icon>
+          {{'PhoneNumper' | translate}}
+        </ion-label>
+        <ion-input type="tel" id="PhoneNumber" formControlName="phonenumber" [(ngModel)]="phoneNumber" required></ion-input>
+      </ion-item>
+      <p class="validationHint" *ngIf="hasError('phonenumber', 'required')">{{ 'require' | translate }}</p> -->
+
+
+        <ion-grid no-padding>
+          <ion-row>
+            <ion-col col-3>
+              <ion-select interface="popover" class="countryCodeSelect animated bounceInUp" formControlName="countryphoneCode" [(ngModel)]="countryPhoneCode">
+                <ion-option *ngFor="let item of getcountriescodes" value="{{item}}">{{item}}</ion-option>
+
+              </ion-select>
+            </ion-col>
+            <ion-col col-9>
+              <ion-item class="animated bounceInUp">
+                <!-- <ion-label floating>
+                  <ion-icon name="ios-phone-portrait-outline"></ion-icon>
+                  {{'PhoneNumper' | translate}}
+                </ion-label> -->
+                <ion-input type="tel" id="PhoneNumber" placeholder="{{'PhoneNumper' | translate}}" formControlName="phonenumber" [(ngModel)]="phoneNumber" required></ion-input>
+
+              </ion-item>
+              <p class="validationHint" *ngIf="hasError('phonenumber', 'required')">{{ 'require' | translate }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid no-padding>
+          <ion-item class="item2 animated bounceInUp">
+            <!-- <ion-label floating>
+          <ion-icon name="ios-lock-outline"></ion-icon>
+          {{'Password' | translate}}
+        </ion-label> -->
+            <ion-input type="{{passwordTypeStyle}}" placeholder="{{'Password' | translate}}" id="PasswordControl" formControlName="password" [(ngModel)]="Password" required></ion-input>
+          </ion-item>
+        </ion-grid>
+
+      </ion-list>
+      <!-- show/hide password Icons -->
+      <div class="{{'showPassword' | translate}} animated bounceInUp">
+        <ion-icon name="ios-eye-outline" class="showPass" (click)="ChangePasswordStyle('text')" *ngIf="passwordTypeStyle === 'password'"></ion-icon>
+        <ion-icon name="ios-eye-off-outline" class="showPass" (click)="ChangePasswordStyle('password')" *ngIf="passwordTypeStyle === 'text'"></ion-icon>
+      </div>
+
+      <button ion-button block type="submit" class="animated bounceInUp mainBtn" [disabled]="!myForm.valid ">{{'Button_Login'
+        | translate}} </button>
+
+    </form>
+
+    <p class="noRegister animated bounceInUp">
+      <button ion-button clear type="button" (click)="openPage('ForgetpasswordPage')" class="animated bounceInUp">{{'DoYouForgetPassword'
+        | translate}}</button>
+      &nbsp;|&nbsp;
+      <button ion-button clear (click)="openPage('SignupPage')" class="animated bounceInUp">{{'SignUp' |
+        translate}}</button>
+    </p>
+
+
+  </ng-container>
+</ion-content>
+
+<ion-footer class="changeLangBtns">
+  <p>
+    <button ion-button clear [class.selectedLang]="language != 'arabic' " (click)="changeLang('arabic')">العربية</button>
+    &nbsp;|&nbsp;
+    <button ion-button clear [class.selectedLang]="language != 'english' " (click)="changeLang('english')">English</button>
+  </p>
+
+</ion-footer>

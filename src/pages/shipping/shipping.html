@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'Shipping' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<!-- Start Shipping Service -->
+<ion-content>
+
+  <form [formGroup]="shippingForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-label stacked>{{ 'shipmentPort' | translate }}</ion-label>
+          <ion-input type="text" formControlName="shipmentPort" [(ngModel)]="ShipmentPort" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('shipmentPort', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('shipmentPort', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'responsibleOfRecievingName' | translate }}</ion-label>
+          <ion-input type="text" formControlName="responsibleOfRecievingName" [(ngModel)]="ResponsibleOfRecievingName" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('responsibleOfRecievingName', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('responsibleOfRecievingName', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'typeOfGoods' | translate }}</ion-label>
+          <ion-input type="text" formControlName="typeOfGoods" [(ngModel)]="TypeOfGoods" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('typeOfGoods', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('typeOfGoods', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+        <ion-col col-12>
+          <ion-label stacked>{{ 'dStreetaddress' | translate }}</ion-label>
+          <ion-input type="text" formControlName="dStreetaddress" [(ngModel)]="DStreetaddress" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('dStreetaddress', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('dStreetaddress', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+        <ion-list class="fieldTitle">
+          <ion-label stacked>{{ "authBill" | translate }}</ion-label>
+          <ion-item class="changeImg">
+            <!-- <p>{{ 'authBill' | translate }}</p>
+            <button ion-button outline (click)="takePicture(camera.PictureSourceType.PHOTOLIBRARY)">{{ 'uploadFile' |
+              translate }}</button>
+            <span>{{ picname1 != ''? picname1 : ('NoFileChosen' | translate) }}</span> -->
+
+            <ion-thumbnail item-start>
+              <img *ngIf="path1 != ''" src="{{path1}}" />
+              <img *ngIf="path1 == ''" src="./assets/imgs/defaultImg.jpg" />
+            </ion-thumbnail>
+            <button ion-button outline (click)="takePicture(camera.PictureSourceType.PHOTOLIBRARY)">
+              {{ "uploadPhoto" | translate }}
+            </button>
+
+          </ion-item>
+        </ion-list>
+        <ion-col col-12>
+          <ion-label stacked>{{ 'others' | translate }}&nbsp;<span class="optionSpan">{{ 'optional' | translate }}</span></ion-label>
+          <ion-textarea formControlName="others" [(ngModel)]="Others"></ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" [disabled]="!shippingForm.valid " (click)="shippingService()">{{'send' |
+      translate}}</button>
+  </form>
+
+</ion-content>
+<!-- End Shipping Service -->

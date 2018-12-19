@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'AboutUs' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <img src="./assets/imgs/about-img.png" class="animated bounceInDown">
+  <h3 class="animated bounceInUp">{{ 'companyName' | translate }}</h3>
+  <hr class="animated bounceInUp">
+  <p class="animated bounceInUp">{{ 'companyDescription' | translate }}</p>
+
+  <div class="{{ 'contactData' | translate }} animated bounceInUp">
+    <ion-label>
+      <ion-icon name="md-globe"></ion-icon>&nbsp;
+      {{ 'website' | translate }}
+    </ion-label>
+    <p> <a href="www.rafalgroup.net" >www.rafalgroup.net</a></p>
+
+    <ion-label>
+      <ion-icon name="ios-phone-portrait-outline"></ion-icon>&nbsp;
+      {{ 'phone' | translate }}
+    </ion-label>
+    <p class="telNo">+20 109 413 2184</p>
+
+    <ion-label>
+      <ion-icon name="ios-at-outline"></ion-icon>&nbsp;
+      {{ 'email' | translate }}
+    </ion-label>
+    <p>admin@rafalgroup.net</p>
+
+    <ion-label>
+      <ion-icon name="ios-pin-outline"></ion-icon>&nbsp;
+      {{ 'address' | translate }}
+    </ion-label>
+    <p>{{'address1'|translate}}</p>
+  </div>
+</ion-content>

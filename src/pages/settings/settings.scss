@@ -1,0 +1,126 @@
+page-settings {
+  .SelectedValue-English {
+    float: right;
+
+    span {
+      color: $sec-color;
+    }
+  }
+
+  .SelectedValue-Arabic {
+    float: left;
+
+    span {
+      color: $sec-color;
+    }
+  }
+
+  .SettingPage-ar {
+    .card {
+      margin: 18px 10px 15px 10px;
+      border: none;
+      box-shadow: -1px 2px 18px 0px #d0d0d0;
+
+      .card-content {
+        padding: 0px 7px;
+
+        .list {
+          .item-block {
+            .item-inner {
+              border-bottom: 1px solid #dedede !important;
+              color: $text-color;
+            }
+          }
+
+          &:last-child .item-block .item-inner {
+            border-bottom: 0 solid #dedede !important;
+          }
+
+          .item {
+            padding-right: 10px;
+          }
+        }
+
+        .label {
+          margin: 0;
+          font-size: $main-font-size - 2;
+          padding: 21px 0;
+        }
+
+        ion-icon {
+          font-size: $main-font-size + 6;
+          color: $main-color;
+          transform: scaleX(-1);
+        }
+
+        .userNo {
+          text-align: left;
+          color: $text-color;
+          font-size: $main-font-size;
+        }
+
+        ion-thumbnail {
+          margin: 8px 0;
+
+          img {
+            width: 65px;
+            height: 65px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+
+    .select .select-icon {
+      .select-icon-inner {
+        left: -15px;
+        margin-top: -2px;
+        border-top: 7px solid;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        color: $sec-color;
+      }
+    }
+
+    .selectLabel {
+      .icon {
+        float: left;
+      }
+    }
+  }
+
+  .SettingPage-en {
+    .card {
+      .card-content {
+        .list {
+          .item {
+            padding-right: 0;
+            padding-left: 10px;
+          }
+        }
+
+        .userNo {
+          text-align: right;
+        }
+      }
+    }
+
+    .select .select-icon {
+      .select-icon-inner {
+        left: auto;
+        right: 0;
+      }
+    }
+
+    .selectLabel {
+      .icon {
+        float: right;
+      }
+    }
+  }
+
+  ion-footer {
+    font-size: $main-font-size - 3;
+    text-align: center;
+  }
+}

@@ -1,0 +1,98 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle class="menuBtn">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'ourServices' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 class="animated bounceInRight" (click)="openPageFromMenu('CharterAccountingPage')">
+        <ion-card>
+          <img src="./assets/imgs/accounting-icon.png">
+          <ion-label>{{ 'accounting' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInLeft" (click)="openPageFromMenu('HiringLaborersPage')">
+        <ion-card>
+          <img src="./assets/imgs/Laborers-icon.png">
+          <ion-label>{{ 'labors' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInRight delay-1s" (click)="openPageFromMenu('FeasibilityStudyPage')">
+        <ion-card>
+          <img src="./assets/imgs/study-icon.png">
+          <ion-label>{{ 'study' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInLeft delay-1s" (click)="openPageFromMenu('EstablishingCompaniesPage')">
+        <ion-card>
+          <img src="./assets/imgs/launch-icon.png">
+          <ion-label>{{ 'companies' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInRight delay-2s" (click)="openPageFromMenu('CustomsClearancePage')">
+        <ion-card>
+          <img src="./assets/imgs/customs-icon.png">
+          <ion-label>{{ 'clearance' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInLeft delay-2s" (click)="openPageFromMenu('EmploymentPage')">
+        <ion-card>
+          <img src="./assets/imgs/employment-icon.png">
+          <ion-label>{{ 'employment' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInRight delay-3s" (click)="openPageFromMenu('OfficeServicesPage')">
+        <ion-card>
+          <img src="./assets/imgs/office-icon.png">
+          <ion-label>{{ 'OfficeServices' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInLeft delay-3s" (click)="openPageFromMenu('TradingAgenciesPage')">
+        <ion-card>
+          <img src="./assets/imgs/tradingAgencies-icon.png">
+          <ion-label>{{ 'tradingAgencies' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInRight delay-4s" (click)="openPageFromMenu('CertifiedTranslationPage')">
+        <ion-card>
+          <img src="assets/imgs/translation-icon.png">
+          <ion-label>{{ 'certifiedTranslation' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 class="animated bounceInLeft delay-4s" (click)="openPageFromMenu('ShippingPage')">
+        <ion-card>
+          <img src="./assets/imgs/shipping-icon.png">
+          <ion-label>{{ 'Shipping' | translate }}
+            <ion-icon name="ios-arrow-round-forward-outline" class="{{ 'arrowIcon' | translate }}"></ion-icon>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

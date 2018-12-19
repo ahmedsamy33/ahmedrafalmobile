@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ 'advertisement' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="getAllArrayImage.length  !=0">
+    <ion-slides pager dir="ltr" loop autoplay="2000s" class="animated bounceInDown">
+
+      <ion-slide *ngFor="let item of getAllArrayImage">
+        <img class="slide-image" src="{{imgUrl+item}}">
+      </ion-slide>
+
+      <!-- <ion-slide>
+        <img class="slide-image" src="assets/imgs/ads/2.jpg">
+      </ion-slide> -->
+
+      <!-- <ion-slide>
+      <img class="slide-image" src="assets/imgs/ads/3.jpg">
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slide-image" src="assets/imgs/ads/4.jpg">
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slide-image" src="assets/imgs/ads/5.jpg">
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slide-image" src="assets/imgs/ads/6.jpg">
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slide-image" src="assets/imgs/ads/7.jpg">
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slide-image" src="assets/imgs/ads/8.jpg">
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slide-image" src="assets/imgs/ads/9.jpg">
+    </ion-slide>
+
+    <ion-slide>
+      <img class="slide-image" src="assets/imgs/ads/10.jpg">
+    </ion-slide> -->
+
+    </ion-slides>
+
+    <hr>
+
+    <ion-grid class="animated bounceInUp">
+      <ion-row>
+        <ion-col col-3 *ngFor="let item of getAllArrayImage">
+          <img class="slide-image" src="{{imgUrl+item}}">
+        </ion-col>
+        <!-- <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/2.jpg">
+            </ion-col>
+            <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/3.jpg">
+            </ion-col>
+            <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/4.jpg">
+            </ion-col>
+            <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/5.jpg">
+            </ion-col>
+            <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/6.jpg">
+            </ion-col>
+            <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/7.jpg">
+            </ion-col>
+            <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/8.jpg">
+            </ion-col>
+            <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/9.jpg">
+            </ion-col>
+            <ion-col col-3>
+                <img class="slide-image" src="assets/imgs/ads/10.jpg">
+            </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <ion-fab bottom left (click)="GoToAddAds()">
+    <button ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

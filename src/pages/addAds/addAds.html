@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ 'uplodeAd' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="addadvertismentForm">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col col-12 class="selectSection">
+          <ion-label>{{ 'jobTitle' | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="job" [(ngModel)]="Job" required>
+            <ion-option *ngFor="let job of jobTitle" value="{{job.code}}">{{job.value}}</ion-option>
+
+          </ion-select>
+          <p class="validationHint" *ngIf="hasError('job', 'required')">{{ 'require' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'jobDescription' | translate }}</ion-label>
+          <ion-textarea formControlName="discription" [(ngModel)]="Discription"></ion-textarea>
+          <p class="validationHint" *ngIf="hasError('discription', 'required')">{{ 'require' | translate }}</p>
+        </ion-col>
+
+        <ion-list class="fieldTitle">
+          <ion-item>
+            <p>{{ 'uplodeAd' | translate }}</p>
+          </ion-item>
+          <ion-item>
+
+            <ion-thumbnail item-start>
+              <img *ngIf="path2 != ''" src="{{path2}}">
+              <img *ngIf="path2 == ''" src="./assets/imgs/defaultImg.jpg" />
+            </ion-thumbnail>
+            <button ion-button outline (click)="takePicture2(camera.PictureSourceType.PHOTOLIBRARY)">{{ 'uploadPhoto' | translate }}</button>
+
+          </ion-item>
+        </ion-list>
+
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" [disabled]="!addadvertismentForm.valid   || file2 == '' " (click)="addAdvertsService()">{{'send' | translate}}</button>
+  </form>
+
+</ion-content>

@@ -1,0 +1,85 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'clearance' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<!-- Start Customs Clearance Service -->
+<ion-content>
+
+  <form [formGroup]="customsForm">
+    <ion-grid>
+      <ion-row>
+
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'shipmentPort' | translate }}</ion-label>
+          <ion-input type="text" formControlName="shipmentPort" [(ngModel)]="ShipmentPort" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('shipmentPort', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('shipmentPort', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'shipmentDescription' | translate }}</ion-label>
+          <ion-input type="text" formControlName="shipmentDescription" [(ngModel)]="ShipmentDescription" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('shipmentDescription', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('shipmentDescription', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-list class="fieldTitle">
+            <ion-label stacked>{{ "billShipment" | translate }}</ion-label>
+            <ion-item class="changeImg">
+              <!-- <p>{{ 'billShipment' | translate }}</p>
+            <button ion-button outline (click)="takePicture(camera.PictureSourceType.PHOTOLIBRARY)">{{ 'uploadFile' |
+              translate }}</button>
+            <span>{{ picname1 != ''? picname1 : ('NoFileChosen' | translate) }}</span> -->
+
+              <ion-thumbnail item-start>
+                <img *ngIf="path1 != ''" src="{{path1}}" />
+                <img *ngIf="path1 == ''" src="./assets/imgs/defaultImg.jpg" />
+              </ion-thumbnail>
+              <button ion-button outline (click)="takePicture(camera.PictureSourceType.PHOTOLIBRARY)">
+                {{ "uploadPhoto" | translate }}
+              </button>
+
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-list class="fieldTitle">
+            <ion-label stacked>{{ "authCopy" | translate }}</ion-label>
+            <ion-item class="changeImg">
+              <!-- <p>{{ 'authCopy' | translate }}</p>
+            <button ion-button outline (click)="takePicture2(camera.PictureSourceType.PHOTOLIBRARY)">{{ 'uploadFile' |
+              translate }}</button>
+            <span>{{ picname2 != ''? picname2 : ('NoFileChosen' | translate) }}</span> -->
+
+              <ion-thumbnail item-start>
+                <img *ngIf="path2 != ''" src="{{path2}}" />
+                <img *ngIf="path2 == ''" src="./assets/imgs/defaultImg.jpg" />
+              </ion-thumbnail>
+              <button ion-button outline (click)="takePicture2(camera.PictureSourceType.PHOTOLIBRARY)">
+                {{ "uploadPhoto" | translate }}
+              </button>
+
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'others' | translate }}&nbsp;<span class="optionSpan">{{ 'optional' | translate }}</span></ion-label>
+          <ion-textarea formControlName="others" [(ngModel)]="Others"></ion-textarea>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" (click)="customsService()" [disabled]="!customsForm.valid || file1 =='' || file2 == '' ">{{'send'
+      | translate}}</button>
+  </form>
+
+</ion-content>
+<!-- End Customs Clearance Service -->

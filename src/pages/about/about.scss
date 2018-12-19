@@ -1,0 +1,43 @@
+page-about {
+    .content {
+        text-align: center;
+
+        img {
+            width: 60%;
+            margin: 30px auto 5px;
+        }
+
+        h3 {
+            color: $main-color;
+        }
+        hr {
+            background-color: $main-color;
+            width: 40px;
+            height: 2px;
+            border-radius: 50px;
+        }
+        p {
+            color: $text-color;
+            padding: 10px 20px;
+            line-height: 28px;
+            text-align: justify;
+            font-size: $main-font-size - 1;
+            margin: 0;
+        }
+        .telNo {
+            direction: ltr;
+            display: inline-block;
+        }
+        .contactData-ar {
+            text-align: right;
+            .label {
+                color: $sec-color;
+                padding: 0 20px;    
+                margin: 13px 0 0;
+            }
+        }
+        .contactData-en {
+            text-align: left;
+        }
+    }
+}

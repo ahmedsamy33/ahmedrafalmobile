@@ -1,0 +1,122 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'labors' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<!-- Start Hiring Laborers Service -->
+<ion-content>
+
+  <form [formGroup]="hiringForm" (ngSubmit)="hiringService()">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ 'activity' | translate }}</ion-label>
+          <ion-input type="text" formControlName="active" [(ngModel)]="Active" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('active', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('active', 'pattern')">{{ 'BadNameFormat' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('active', 'minlength')">{{ 'MinLenght4' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('active', 'maxlength')">{{ 'MaxLenght30' | translate }}</p>
+
+        </ion-col>
+
+        <ion-col col-6 class="selectSection">
+          <ion-label>{{ 'jobTitle' | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="job" [(ngModel)]="Job" required>
+            <ion-option *ngFor="let job of jobTitle" value="{{job.code}}">{{job.value}}</ion-option>
+            <!-- <ion-option value="2">job 2</ion-option>
+            <ion-option value="3">job 3</ion-option>
+            <ion-option value="4">job 4</ion-option>
+            <ion-option value="5">job 5</ion-option> -->
+          </ion-select>
+        </ion-col>
+
+        <ion-col col-6 class="selectSection">
+          <ion-label>{{ 'region' | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="region" [(ngModel)]="Region" required>
+            <ion-option *ngFor="let region of RegionArr" value="{{region.code}}">{{region.value}}</ion-option>
+            <!-- <ion-option value="Egypt">region 2</ion-option>
+            <ion-option value="Alex">region 3</ion-option> -->
+
+          </ion-select>
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ 'age' | translate }} </ion-label>
+          <ion-input type="number" formControlName="age" [(ngModel)]="Age" (ionChange)="calAge()" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('age', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('age', 'maxlength')">{{ 'MaxLenght2' | translate }}</p>
+          <!-- <p class="validationHint" *ngIf="hasError('age', 'pattern')">{{ 'onlyPostiveVal' | translate }}</p> -->
+          <p class="validationHint" *ngIf="!hiringForm.get('age').hasError('required') && !hiringForm.get('age').hasError('maxlength') && ageFlag">{{
+            'ageMessage' | translate }}
+
+          </p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'skills' | translate }}</ion-label>
+          <ion-textarea formControlName="skills" [(ngModel)]="Skills" required></ion-textarea>
+          <p class="validationHint" *ngIf="hasError('skills', 'required')">{{ 'require' | translate }}</p>
+
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ 'noYears' | translate }}</ion-label>
+          <ion-input type="number" formControlName="noYears" [(ngModel)]="NoYears" required (ionChange)="calNOYears()"></ion-input>
+          <p class="validationHint" *ngIf="hasError('noYears', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('noYears', 'minlength')">{{ 'MinLenght1' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('noYears', 'maxlength')">{{ 'MaxLength4' | translate }}</p>
+          <p class="validationHint" *ngIf="!hiringForm.get('noYears').hasError('required') && NOYears">{{
+            'noofyearMessage' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ 'DailyHours' | translate }}</ion-label>
+          <ion-input type="number" formControlName="dailyHours" [(ngModel)]="DailyHours" (ionChange)="calDayHour()"
+            required></ion-input>
+          <p class="validationHint" *ngIf="hasError('dailyHours', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="!hiringForm.get('dailyHours').hasError('required') &&dayFlag">{{
+            'DayMessage' | translate }}</p>
+
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ 'salary' | translate }}</ion-label>
+          <ion-input type="number" formControlName="salary" [(ngModel)]="Salary" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('salary', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('salary', 'minlength')">{{ 'MinLenght3' | translate }}</p>
+
+        </ion-col>
+
+        <ion-col col-6 class="selectSection">
+          <ion-label>{{ 'statusOfVisa' | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="statusOfVisa" [(ngModel)]="StatusOfVisa" required>
+            <ion-option value="Available">{{ 'Available' | translate }}</ion-option>
+            <ion-option value="Unavailable">{{ 'Unavailable' | translate }}</ion-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'requireQualification' | translate }}</ion-label>
+          <ion-textarea formControlName="requireQualification" [(ngModel)]="RequireQualification" required></ion-textarea>
+          <p class="validationHint" *ngIf="hasError('requireQualification', 'required')">{{ 'require' | translate }}</p>
+
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'others' | translate }}&nbsp;<span class="optionSpan">{{ 'optional' | translate }}</span></ion-label>
+          <ion-textarea formControlName="others" [(ngModel)]="Others"></ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" [disabled]="!hiringForm.valid || ageFlag ||dayFlag ||NOYears">{{'send' |
+      translate}}</button>
+  </form>
+
+</ion-content>
+<!-- End Hiring Laborers Service -->

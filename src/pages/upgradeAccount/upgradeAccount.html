@@ -1,0 +1,317 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ "upgradeTo" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 class="selectSection">
+        <ion-label>{{ "upgradeTo" | translate }}</ion-label>
+        <!--
+          <ion-select interface="popover" [(ngModel)]="upgradeTo">
+            <ion-option value="com">{{ "companies" | translate }}</ion-option>
+            <ion-option value="new">{{ "NewInvestor" | translate }}</ion-option>
+            <ion-option value="inter">{{
+              "InterCompant" | translate
+              }}</ion-option>
+          </ion-select>
+        -->
+
+        <ion-select interface="popover" [(ngModel)]="upgradeTo">
+          <ion-option *ngFor="let company of CompanyArr" value="{{company.code}}">{{ company.value }}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Start Established company Form -->
+  <form *ngIf="upgradeTo == 'Esta'" [formGroup]="stapForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 class="selectSection">
+          <ion-label>{{ "country" | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="countryestablish" [(ngModel)]="countryEstablish">
+            <ion-option *ngFor="let country of countryArrStab" value="{{country.code}}">{{ country.value }}</ion-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ "compName" | translate }}</ion-label>
+          <ion-input type="text" formControlName="companyestablish" [(ngModel)]="companyEstablish"></ion-input>
+          <p class="validationHint" *ngIf="hasError('companyestablish', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError('companyestablish', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+        </ion-col>
+        <ion-col col-6>
+          <ion-label stacked>{{ "compWebsite" | translate }}</ion-label>
+          <ion-input type="text" formControlName="websiteestablish" [(ngModel)]="websiteEstablish"></ion-input>
+          <p class="validationHint" *ngIf="hasError('websiteestablish', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError('websiteestablish', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+        </ion-col>
+
+        <!--
+          <ion-col col-6>
+            <ion-label stacked>{{ "adminName" | translate }}</ion-label>
+            <ion-input type="text" formControlName="adminNameestablish" [(ngModel)]="adminNameEstablish"></ion-input>
+          </ion-col>
+        -->
+
+        <ion-col col-12>
+          <ion-label>{{ "expiryDate" | translate }}</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" max="3020-10-31" doneText="{{'Button_Confirm' | translate}}" cancelText="{{'Button_Cancle' | translate}}" formControlName="expireDateestablish" [(ngModel)]="expireDateEstablish" required></ion-datetime>
+          <p class="validationHint" *ngIf="hasError('expireDateestablish', 'required')">
+            {{ "require" | translate }}
+          </p>
+        </ion-col>
+        <!--
+          <ion-col col-12>
+            <ion-label stacked>{{ "crNo" | translate }}</ion-label>
+            <ion-input type="number" formControlName="crnumberestablish" [(ngModel)]="crNumberEstablish"></ion-input>
+          </ion-col>
+        -->
+
+        <ion-col col-12>
+          <ion-label stacked>{{ "email" | translate }}</ion-label>
+          <ion-input type="email" formControlName="emailestablish" [(ngModel)]="emailEstablish"></ion-input>
+          <p class="validationHint" *ngIf="hasError('emailestablish', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError('emailestablish', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError('emailestablish', 'pattern')">
+            {{ "ErrorEmailPattern" | translate }}
+          </p>
+        </ion-col>
+        <!--
+          <ion-col col-12>
+            <ion-label stacked>{{ 'confEmail' | translate }}</ion-label>
+            <ion-input type="email"></ion-input>
+          </ion-col>
+        -->
+
+        <ion-col col-12>
+          <ion-list class="changeImg">
+            <ion-label stacked>{{ "crImg" | translate }}</ion-label>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img *ngIf="path2 != ''" src="{{path2}}" />
+                <img *ngIf="path2 == ''" src="./assets/imgs/defaultImg.jpg" />
+              </ion-thumbnail>
+              <button ion-button outline (click)="takePicture2(camera.PictureSourceType.PHOTOLIBRARY)">
+                {{ "uploadPhoto" | translate }}
+              </button>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" [disabled]="!stapForm.valid || file2 == ''" (click)="Established()">
+      {{ "send" | translate }}
+    </button>
+  </form>
+  <!-- End Established company Form -->
+
+  <!-- Start New Investor Form -->
+  <form *ngIf="upgradeTo == 'Inverst'" [formGroup]="InvestorForm">
+    <ion-grid>
+      <ion-row>
+        <!--
+          <ion-col col-6>
+                    <ion-label stacked>{{ "yourName" | translate }}</ion-label>
+                    <ion-input type="text" formControlName="yournameNew" [(ngModel)]="yourNameNew"></ion-input>
+          </ion-col> (ngModelChange)="getRegionValue()"
+        -->
+
+        <ion-col col-6 class="selectSection">
+          <ion-label>{{ "nationality" | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="countryArrNewInvestor" [(ngModel)]="countryArrNewInvestor">
+            <ion-option *ngFor="let country of countryArrNew" value="{{country.code}}">{{ country.value }}</ion-option>
+          </ion-select>
+          <p class="validationHint" *ngIf="hasError2('countryArrNewInvestor', 'required')">
+            {{ "require" | translate }}
+          </p>
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ "invetType" | translate }}</ion-label>
+          <ion-input type="text" formControlName="investmentTypeNew" [(ngModel)]="InvestmentTypeNew"></ion-input>
+          <p class="validationHint" *ngIf="hasError2('investmentTypeNew', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError2('investmentTypeNew', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ "capital" | translate }}</ion-label>
+          <ion-input type="number" formControlName="captialNew" [(ngModel)]="CaptialNew"></ion-input>
+          <p class="validationHint" *ngIf="hasError2('captialNew', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError2('captialNew', 'minlength')">
+            {{ "MinLenght4" | translate }}
+          </p>
+        </ion-col>
+
+        <ion-col col-12 class="selectSection">
+          <ion-label stacked>{{ "investCountry" | translate }}</ion-label>
+          <!--
+            <ion-input type="text" formControlName="countryNewWantToVisit" [(ngModel)]="CountryNewWantToVisit"></ion-input>
+          -->
+
+          <ion-select interface="popover" formControlName="countryNewWantToVisit" [(ngModel)]="CountryNewWantToVisit">
+            <ion-option *ngFor="let region of RegionArr" value="{{region.code}}">{{ region.value }}</ion-option>
+          </ion-select>
+          <p class="validationHint" *ngIf="hasError2('countryNewWantToVisit', 'required')">
+            {{ "require" | translate }}
+          </p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ "email" | translate }}</ion-label>
+          <ion-input type="email" formControlName="emailnew" [(ngModel)]="emailNew"></ion-input>
+          <p class="validationHint" *ngIf="hasError2('emailnew', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError2('emailnew', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError2('emailnew', 'pattern')">
+            {{ "ErrorEmailPattern" | translate }}
+          </p>
+        </ion-col>
+        <!--
+          <ion-col col-12>
+            <ion-label stacked>{{ 'confEmail' | translate }}</ion-label>
+            <ion-input type="email"></ion-input>
+          </ion-col>
+        -->
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" [disabled]="!InvestorForm.valid" (click)="Investor()">
+      {{ "send" | translate }}
+    </button>
+  </form>
+  <!-- End New Investor Form -->
+
+  <!-- Start International company Form -->
+  <form *ngIf="upgradeTo == 'Inter'" [formGroup]="companyForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label stacked>{{ "compName" | translate }}</ion-label>
+          <ion-input type="text" formControlName="companynameInternal" [(ngModel)]="companyNameInternal"></ion-input>
+          <p class="validationHint" *ngIf="hasError3('companynameInternal', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError3('companynameInternal', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+        </ion-col>
+        <ion-col col-6>
+          <ion-label stacked>{{ "compWebsite" | translate }}</ion-label>
+          <ion-input type="text" formControlName="websiteinternal" [(ngModel)]="websiteInternal"></ion-input>
+          <p class="validationHint" *ngIf="hasError3('websiteinternal', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError3('websiteinternal', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+        </ion-col>
+
+        <ion-col col-6 class="selectSection">
+          <ion-label>{{ "nationality" | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="CompanyarrinternalShip" [(ngModel)]="CompanyArrInternalShip" (ngModelChange)="getRegionValue2()">
+            <ion-option *ngFor="let country of CompanyArrInter" value="{{country.code}}">{{ country.value }}</ion-option>
+          </ion-select>
+          <p class="validationHint" *ngIf="hasError3('CompanyarrinternalShip', 'required')">
+            {{ "require" | translate }}
+          </p>
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ "activity" | translate }}</ion-label>
+          <ion-input type="text" formControlName="activityinternal" [(ngModel)]="activityInternal"></ion-input>
+          <p class="validationHint" *ngIf="hasError3('activityinternal', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError3('activityinternal', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError('activityinternal', 'pattern')">{{ 'BadNameFormat' | translate }}</p>
+
+        </ion-col>
+
+        <ion-col col-12 class="selectSection">
+          <ion-label stacked>{{ "investCountry" | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="countryYounWantinternal" [(ngModel)]="countryYounWantInternal">
+            <ion-option *ngFor="let region of RegionArr2" value="{{region.code}}">{{ region.value }}</ion-option>
+          </ion-select>
+          <p class="validationHint" *ngIf="hasError3('countryYounWantinternal', 'required')">
+            {{ "require" | translate }}
+          </p>
+        </ion-col>
+        <!--
+          <ion-col col-12>
+            <ion-label stacked>{{ "crNo" | translate }}</ion-label>
+            <ion-input type="number" formControlName="crNumberinternal" [(ngModel)]="crNumberInternal"></ion-input>
+          </ion-col>
+        -->
+
+        <ion-col col-12>
+          <ion-label stacked>{{ "email" | translate }}</ion-label>
+          <ion-input type="email" formControlName="emailinternal" [(ngModel)]="emailInternal"></ion-input>
+
+          <p class="validationHint" *ngIf="hasError3('emailinternal', 'required')">
+            {{ "require" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError3('emailinternal', 'maxlength')">
+            {{ "MaxLenght30" | translate }}
+          </p>
+          <p class="validationHint" *ngIf="hasError3('emailinternal', 'pattern')">
+            {{ "ErrorEmailPattern" | translate }}
+          </p>
+        </ion-col>
+        <!--
+          <ion-col col-12>
+            <ion-label stacked>{{ 'confEmail' | translate }}</ion-label>
+            <ion-input type="email"></ion-input>
+          </ion-col>
+        -->
+
+        <ion-col col-12>
+          <ion-list class="changeImg">
+            <ion-label stacked>{{ "crImg" | translate }}</ion-label>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img *ngIf="path3 != ''" src="{{path3}}" />
+                <img *ngIf="path3 == ''" src="./assets/imgs/defaultImg.jpg" />
+              </ion-thumbnail>
+              <button ion-button outline (click)="takePicture3(camera.PictureSourceType.PHOTOLIBRARY)">
+                {{ "uploadPhoto" | translate }}
+              </button>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" [disabled]="!companyForm.valid || file3 == ''" (click)="International()">
+      {{ "send" | translate }}
+    </button>
+  </form>
+  <!-- End International company Form -->
+</ion-content>

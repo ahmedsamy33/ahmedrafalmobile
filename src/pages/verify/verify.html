@@ -1,0 +1,32 @@
+<ion-content padding class="Authentication-Form" overflow-scroll="false">
+
+  <div class="logo animated bounceInDown">
+    <img src="./assets/imgs/rafal-logo.png">
+  </div>
+
+  <form class="{{'ArabicOrEnglishForm' | translate}}" [formGroup]="myForm" (ngSubmit)="verfiy()">
+    <ion-list>
+
+      <ion-item class="item1 animated bounceInUp">
+        <ion-label floating>
+          <ion-icon name="ios-phone-portrait-outline"></ion-icon>
+          {{'ConfirmationCode' | translate}}
+        </ion-label>
+        <ion-input type="text" id="Code" formControlName="code" [(ngModel)]="Code" required></ion-input>
+      </ion-item>
+    </ion-list>
+    <p class="validationHint" *ngIf="hasError('code', 'required')">{{
+      'require' | translate }}</p>
+    <p class="validationHint" *ngIf="hasError('code', 'minlength')">{{
+      'MinLenght8' | translate }}</p>
+    <button ion-button block type="submit" class="animated bounceInUp mainBtn" [disabled]="!myForm.valid">{{'Button_CheckNumber'
+      | translate}}</button>
+
+  </form>
+  <!-- <button ion-button clear type="button" class="resendCodeBtn">{{'ResendCode' | translate}}</button>
+  <p class="resendCodeBtn">{{'Wait3Minutes' | translate}}</p> -->
+  <div class="noRegister animated bounceInUp">
+    <button ion-button clear type="button" (click)="resendCode()">{{'ResendCode' | translate}}</button>
+    <p class="resendCodeBtn">{{'Wait3Minutes' | translate}}</p>
+  </div>
+</ion-content>

@@ -1,0 +1,65 @@
+<ion-menu class="main-menu" [content]="content" *ngIf="this.platform.dir()==='rtl'" side="right">
+
+  <ion-content>
+
+    <div class="userData">
+      <img *ngIf="ImageURL != ''" src="{{ImageURL}}">
+      <img *ngIf="ImageURL == ''" src="./assets/imgs/userImg.png">
+      <p>{{userData.userDetails.userName}}</p>
+    </div>
+
+    <ion-list>
+      <ng-container *ngFor="let p of pages">
+        <button menuClose ion-item (click)="openPage(p)" [hidden]=" p.title =='upgradeTo' &&userData.userDetails.type == 'Company' ">
+          <ion-icon name="{{ p.icon }}"></ion-icon>&nbsp;&nbsp;{{ p.title | translate }}
+        </button>
+      </ng-container>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer>
+    <button menuClose ion-button block clear class="logoutBtn" *ngIf="userData.is_log" (click)="logout()">
+      <ion-icon name="ios-log-out-outline"></ion-icon>&nbsp;&nbsp;&nbsp;{{'logout' | translate}}
+    </button>
+    <button menuClose ion-button block clear class="logoutBtn" *ngIf="!userData.is_log">
+      <ion-icon name="ios-log-in-outline"></ion-icon>&nbsp;&nbsp;&nbsp;{{'Button_Login' | translate}}
+    </button>
+  </ion-footer>
+
+</ion-menu>
+
+
+
+<ion-menu class="main-menu" [content]="content" *ngIf="this.platform.dir()==='ltr'" side="left">
+
+  <ion-content>
+
+    <div class="userData">
+      <img *ngIf="ImageURL != ''" src="{{ImageURL}}">
+      <img *ngIf=" ImageURL == ''" src="./assets/imgs/userImg.png">
+      <p>{{userData.userDetails?.userName}}</p>
+    </div>
+
+    <ion-list>
+      <ng-container *ngFor="let p of pages">
+        <button menuClose ion-item (click)="openPage(p)" [hidden]=" p.title =='upgradeTo' &&userData.userDetails.type == 'Company' ">
+          <ion-icon name="{{ p.icon }}"></ion-icon>&nbsp;&nbsp;{{ p.title | translate }}
+        </button>
+      </ng-container>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer>
+    <button menuClose ion-button block clear class="logoutBtn" *ngIf="userData.is_log" (click)="logout()">
+      <ion-icon name="ios-log-out-outline"></ion-icon>&nbsp;&nbsp;&nbsp;{{'logout' | translate}}
+    </button>
+    <button menuClose ion-button block clear class="logoutBtn" *ngIf="!userData.is_log">
+      <ion-icon name="ios-log-in-outline"></ion-icon>&nbsp;&nbsp;&nbsp;{{'Button_Login' | translate}}
+    </button>
+  </ion-footer>
+
+</ion-menu>
+
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

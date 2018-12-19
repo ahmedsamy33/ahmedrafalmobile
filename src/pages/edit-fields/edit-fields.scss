@@ -1,0 +1,122 @@
+edit-fields-page {
+  .item {
+    padding-left: 0;
+    padding-right: 8px !important;
+    background-color: transparent;
+    font-size: $main-font-size;
+
+    &.item-block .item-inner {
+      padding-right: 0;
+      border-bottom: none;
+    }
+
+
+  }
+
+  .input-has-focus .label[floating],
+  .input-has-value .label[floating] {
+    -webkit-transform: translate3d(0, -9px, 0) scale(0.8);
+    -moz-transform: translate3d(0, -9px, 0) scale(0.8);
+    -ms-transform: translate3d(0, -9px, 0) scale(0.8);
+    transform: translate3d(0, -9px, 0) scale(0.8);
+  }
+
+  .item-label-stacked .text-input,
+  .item-label-floating .text-input {
+    margin-top: 10px;
+  }
+
+  .item-input {
+    ion-input {
+      height: 45px;
+      border: $main-border $sec-color; // margin-top: -6px;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .label[floating] {
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+  }
+
+  .card {
+    padding: 0 10px;
+    box-shadow: 0 0 25px -5px #999;
+  }
+
+  .list-header {
+    padding-right: 0 !important;
+    margin: 0;
+    border-bottom: $main-border;
+  }
+
+  .item-datetime {
+    border: $main-border;
+  }
+
+  .changeImg {
+    margin: -1px 0 -3px !important;
+  }
+
+  .updateBtn {
+    margin: 0 !important;
+    height: 45px;
+    background: $sec-color;
+    border-radius: 0;
+  }
+
+  .cancelBtn {
+    margin: 0 !important;
+    height: 45px;
+    border-right-width: 1px !important;
+    border-left-width: 1px !important;
+    color: $text-color;
+    border-color: $text-color;
+    border-radius: 0;
+  }
+
+  .validationHint {
+    position: absolute;
+    background: #fff6d3;
+    margin: 5px auto;
+    padding: 0 15px;
+    z-index: 99;
+    line-height: 35px;
+    width: 91%;
+    font-size: $main-font-size - 2;
+    box-shadow: -2px -2px 0px 0px #e2dab7 inset;
+    background: #ab0005 !important;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.ErrorToast {
+  .toast-container {
+    text-align: center;
+    background-color: #de1414;
+  }
+}
+
+.SuccessToast {
+  .toast-container {
+    text-align: center;
+    background-color: #77c04c;
+  }
+}
+
+.InfoToast {
+  .toast-container {
+    text-align: center;
+    background-color: #ffcd2b;
+
+    .toast-message {
+      color: #222;
+    }
+  }
+}

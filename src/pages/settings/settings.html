@@ -1,0 +1,94 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'Setting' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="{{'SettingPage' | translate}}">
+  <ng-container *ngIf="(userData | json) != '{}'">
+    <!-- change img/name -->
+    <ion-card class="animated bounceInUp">
+      <ion-card-content>
+        <ion-list (click)="openEditePage(true)">
+          <ion-item>
+            <ion-thumbnail item-start class="userImg">
+              <img *ngIf="imageTokn != null" src="{{ImageURL+imageTokn}}">
+              <img *ngIf="imageTokn  == null || imageTokn  == '' " src="./assets/imgs/editUserImg.png">
+            </ion-thumbnail>
+            <span> {{userData.userName}} </span>
+            <ion-icon name="ios-arrow-back" item-right></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- account details -->
+    <ion-card class="animated bounceInUp">
+      <ion-card-content>
+        <!-- username -->
+        <ion-list>
+          <button ion-item>
+            <ion-label>{{'UserName' | translate}}</ion-label>
+            <ion-label item-right class="userNo">{{userData.phoneNumber}}</ion-label>
+          </button>
+        </ion-list>
+
+        <!-- change password -->
+        <ion-list (click)="openEditePage(false)">
+          <button ion-item>
+            {{'ChangePassword' | translate}}
+            <ion-icon name="ios-arrow-back" item-right></ion-icon>
+          </button>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- change language -->
+    <ion-card class="animated bounceInUp">
+      <ion-card-content>
+        <ion-list>
+          <ion-item (click)="changeLage()">
+            <ion-label class="selectLabel">
+              <span>{{'Language' | translate}}</span>
+              <div class="{{'SelectedValue' | translate}}">
+                <span>{{'SelectedLanguage' | translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <ion-icon name="md-arrow-dropdown"></ion-icon>
+              </div>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- evaluate app -->
+    <ion-card class="animated bounceInUp">
+      <ion-card-content>
+        <ion-list>
+          <button ion-item>
+            {{'EvalueApp' | translate}}
+            <ion-icon name="ios-arrow-back" item-right></ion-icon>
+          </button>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- deactivate account -->
+    <ion-card class="animated bounceInUp">
+      <ion-card-content>
+        <ion-list>
+          <button ion-item>
+            {{'DisableAccount' | translate}}
+            <ion-icon name="ios-arrow-back" item-right></ion-icon>
+          </button>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-footer no-shadow class="animated bounceInUp">
+      <p>Rafal Group 1.0 @ 19 Oct 18</p>
+    </ion-footer>
+
+  </ng-container>
+</ion-content>

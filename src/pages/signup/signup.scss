@@ -1,0 +1,32 @@
+page-signup {
+  .showPassword-ar {
+    margin-top: -25px !important;
+  }
+
+  .logo {
+    text-align: center;
+
+    img {
+      width: 35% !important;
+      margin: 5% auto 5% !important;
+
+      @media only screen and (min-width: $breakpoint-phone) {
+        width: 30%;
+        margin: 10% auto;
+      }
+
+      @media only screen and (min-width: $breakpoint-tablet) {
+        width: 15%;
+        margin: 5% auto;
+      }
+
+      @media only screen and (min-width: $breakpoint-desktop) {
+        width: 20%;
+        margin: 5% auto;
+      }
+    }
+  }
+
+}
+
+@import "../login/login.scss";

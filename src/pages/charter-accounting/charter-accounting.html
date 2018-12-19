@@ -1,0 +1,112 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'accounting' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<!-- Start Charter Accounting Service -->
+<ion-content>
+
+  <form [formGroup]="charterForm">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'yearBudget' | translate }}</ion-label>
+          <ion-input type="number" formControlName="yearBudget" [(ngModel)]="YearBudget" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('yearBudget', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('yearBudget', 'minlength')">{{ 'MinLenght3' | translate }}</p>
+          <!-- <p class="validationHint" *ngIf="hasError('yearBudget', 'maxlength')">{{ 'MaxLength4' | translate }}</p> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col col-12>
+          <ion-list class="fieldTitle">
+            <ion-label stacked>{{ "yearAccounting" | translate }}</ion-label>
+            <ion-item class="changeImg">
+              <!-- <p>{{ 'yearAccounting' | translate }}</p>
+        <button ion-button outline (click)="takePicture(camera.PictureSourceType.PHOTOLIBRARY)">{{ 'uploadFile' |
+          translate }}</button>
+        <span>{{ picname1 != ''? picname1 : ('NoFileChosen' | translate) }}</span> -->
+
+              <ion-thumbnail item-start>
+                <img *ngIf="path1 != ''" src="{{path1}}" />
+                <img *ngIf="path1 == ''" src="./assets/imgs/defaultImg.jpg" />
+
+              </ion-thumbnail>
+              <button ion-button outline (click)="takePicture(camera.PictureSourceType.PHOTOLIBRARY)">
+                {{ "uploadPhoto" | translate }}
+              </button>
+
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-list class="fieldTitle">
+
+            <ion-label stacked>{{ "bankStatement" | translate }}</ion-label>
+            <ion-item class="changeImg">
+              <!-- <p>{{ 'bankStatement' | translate }}</p>
+        <button ion-button outline (click)="takePicture2(camera.PictureSourceType.PHOTOLIBRARY)">{{ 'uploadFile' |
+          translate }}</button>
+        <span>{{ picname2 != ''? picname2 : ('NoFileChosen' | translate) }}</span> -->
+
+              <ion-thumbnail item-start>
+                <img *ngIf="path2 != ''" src="{{path2}}" />
+                <img *ngIf="path2 == ''" src="./assets/imgs/defaultImg.jpg" />
+              </ion-thumbnail>
+              <button ion-button outline (click)="takePicture2(camera.PictureSourceType.PHOTOLIBRARY)">
+                {{ "uploadPhoto" | translate }}
+              </button>
+
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-list class="fieldTitle">
+            <ion-label stacked>{{ "companyAccounts" | translate }}</ion-label>
+            <ion-item class="changeImg">
+              <!--<p>{{ 'companyAccounts' | translate }}</p>
+         <button ion-button outline (click)="takePicture3(camera.PictureSourceType.PHOTOLIBRARY)">{{ 'uploadFile' |
+          translate }}</button>
+        <span>{{ picname3 != ''? picname3 : ('NoFileChosen' | translate) }}</span> -->
+
+              <ion-thumbnail item-start>
+                <img *ngIf="path3 != ''" src="{{path3}}" />
+                <img *ngIf="path3 == ''" src="./assets/imgs/defaultImg.jpg" />
+              </ion-thumbnail>
+              <button ion-button outline (click)="takePicture3(camera.PictureSourceType.PHOTOLIBRARY)">
+                {{ "uploadPhoto" | translate }}
+              </button>
+
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-label stacked>{{ 'others' | translate }}&nbsp;<span class="optionSpan">{{ 'optional' | translate }}</span></ion-label>
+          <ion-textarea formControlName="others" [(ngModel)]="Others"></ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" (click)="charterService()" [disabled]="!charterForm.valid || file1 =='' || file2 == '' || file3 == ''">{{'send'
+      | translate}}</button>
+  </form>
+
+</ion-content>
+<!-- End Charter Accounting Service -->

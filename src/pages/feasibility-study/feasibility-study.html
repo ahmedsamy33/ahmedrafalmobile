@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'study' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<!-- Start Feasibility Study Service -->
+<ion-content>
+
+  <form [formGroup]="FeasibilityForm" (ngSubmit)="FeasibilityService()">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col col-6 class="selectSection">
+          <ion-label>{{ 'country' | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="country" [(ngModel)]="Country" (ngModelChange)="getRegionValue()" required>
+            <ion-option *ngFor="let country of countryArr" value="{{country.code}}">{{country.value}}</ion-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col col-6 class="selectSection">
+          <ion-label>{{ 'region' | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="region" [(ngModel)]="Region" required>
+            <ion-option *ngFor="let region of RegionArr" value="{{region.code}}">{{region.value}}</ion-option>
+
+          </ion-select>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'address' | translate }}</ion-label>
+          <ion-input type="text" formControlName="address" [(ngModel)]="Address" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('address', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('address', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+
+          <!-- <p class="validationHint" *ngIf="hasError('address', 'pattern')">{{ 'LetterAndNum' | translate }}</p> -->
+
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ 'activity' | translate }}</ion-label>
+          <ion-input type="text" formControlName="activity" [(ngModel)]="Activity" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('activity', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('activity', 'maxlength')">{{ 'MaxLenght30' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('activity', 'pattern')">{{ 'BadNameFormat' | translate }}</p>
+
+        </ion-col>
+
+        <ion-col col-6 class="selectSection">
+          <ion-label>{{ 'compType' | translate }}</ion-label>
+          <ion-select interface="popover" formControlName="compType" [(ngModel)]="CompType" required>
+            <ion-option *ngFor="let company of CompanyArr" value="{{company.code}}">{{company.value}}</ion-option>
+
+          </ion-select>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'capital' | translate }}</ion-label>
+          <ion-input type="number" formControlName="capital" [(ngModel)]="Capital" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('capital', 'required')">{{ 'require' | translate }}</p>
+
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" [disabled]="!FeasibilityForm.valid ">{{'send' | translate}}</button>
+  </form>
+
+</ion-content>
+<!-- End Feasibility Study Service -->

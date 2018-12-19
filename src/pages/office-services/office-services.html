@@ -1,0 +1,93 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'OfficeServices' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<!-- Start Office Services Service -->
+<ion-content>
+
+  <form [formGroup]="OfficeForm" (ngSubmit)="OfficeService()">
+    <ion-grid>
+      <ion-row>
+
+
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'address' | translate }}</ion-label>
+          <ion-input type="text" formControlName="address" [(ngModel)]="Address" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('address', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('address', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'rentingOffices' | translate }}</ion-label>
+          <ion-input type="text" formControlName="rentingOffices" [(ngModel)]="RentingOffices" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('rentingOffices', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('rentingOffices', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'officeFurniture' | translate }}</ion-label>
+          <ion-input type="text" formControlName="officeFurniture" [(ngModel)]="OfficeFurniture" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('officeFurniture', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('officeFurniture', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'devices' | translate }}</ion-label>
+          <ion-input type="text" formControlName="devices" [(ngModel)]="Devices" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('devices', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('devices', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'cameras' | translate }}</ion-label>
+          <ion-input type="text" formControlName="cameras" [(ngModel)]="Cameras" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('cameras', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('cameras', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'inks' | translate }}</ion-label>
+          <ion-input type="text" formControlName="inks" [(ngModel)]="Inks" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('papers', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('papers', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'papers' | translate }}</ion-label>
+          <ion-input type="text" formControlName="papers" [(ngModel)]="Papers" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('papers', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('papers', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'webDesign' | translate }}</ion-label>
+          <ion-input type="text" formControlName="webDesign" [(ngModel)]="WebDesign" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('webDesign', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('webDesign', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'dMarketing' | translate }}</ion-label>
+          <ion-input type="text" formControlName="dMarketing" [(ngModel)]="DMarketing" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('dMarketing', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('dMarketing', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'others' | translate }}&nbsp;<span class="optionSpan">{{ 'optional' | translate }}</span></ion-label>
+          <ion-textarea formControlName="others" [(ngModel)]="Others"></ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" [disabled]="!OfficeForm.valid ">{{'send' | translate}}</button>
+  </form>
+
+</ion-content>
+<!-- End Office Services Service -->

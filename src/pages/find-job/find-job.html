@@ -1,0 +1,161 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ "findJob" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- Start Search input -->
+  <ion-list class="animated bounceInDown">
+    <ion-item class="selectSection">
+      <!-- <ion-label>
+        <ion-icon name="ios-search-outline"></ion-icon>
+      </ion-label> -->
+      <!-- <ion-input type="text" *ngIf="jobs == 'jobs'" [(ngModel)]="searchjobs" placeholder="{{'searchByJobTitle' | translate}}" (keyup.enter)="getHiringlaborsSearch()"></ion-input>
+
+      <ion-input type="text" *ngIf="jobs != 'jobs'" [(ngModel)]="searchlabores" placeholder="{{'searchByJobTitle' | translate}} " (keyup.enter)="getEmployeeSearch()"></ion-input> -->
+
+      <ion-label>
+        <ion-icon name="ios-search-outline"></ion-icon> {{ 'searchByJobTitle' | translate }}
+      </ion-label>
+      <ion-select interface="popover" *ngIf="jobs == 'jobs'" [(ngModel)]="searchjobs" (ngModelChange)="getHiringlaborsSearch()">
+        <ion-option *ngFor="let job of jobTitle" value="{{job.code}}">{{job.value}}</ion-option>
+      </ion-select>
+
+      <ion-select interface="popover" *ngIf="jobs != 'jobs'" [(ngModel)]="searchlabores" (ngModelChange)="getEmployeeSearch()">
+        <ion-option *ngFor="let job of jobTitle" value="{{job.code}}">{{job.value}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <!-- End Search input -->
+
+  <div [ngSwitch]="jobs">
+    <!-- Start jobs tab -->
+    <ion-list *ngSwitchCase="'jobs'">
+      <ng-container *ngIf="arrayJobs.length !=0">
+
+        <ion-card class="jobCard animated bounceInUp" *ngFor="let item of arrayJobs">
+          <ion-card-header>
+            <p>
+              <ion-icon name="ios-briefcase"></ion-icon>&nbsp;&nbsp;{{item.jobTitle}}
+            </p>
+            <p>
+              <ion-icon name="pin"></ion-icon>&nbsp;&nbsp;{{item.country}} {{item.region}}
+            </p>
+            <p>
+              <ion-icon name="calendar"></ion-icon>&nbsp;&nbsp;
+              <span>{{ "experianceYears" | translate }}</span>&nbsp; {{item.yearsOfExperience}} {{ "year" | translate
+              }}
+            </p>
+            <p>
+              <ion-icon name="cash"></ion-icon>&nbsp;&nbsp;
+              <span>{{ "salary" | translate }}</span>&nbsp; {{item.salary}} {{ "egp" | translate }}
+            </p>
+            <p>
+              <ion-icon name="time"></ion-icon>&nbsp;&nbsp;
+              <span>{{ 'DailyHours' | translate }}</span>&nbsp;
+              <!-- 9 {{ 'am' | translate }} - 5 {{ 'pm' | translate }} -->
+              {{item.dailyWorkHours}} {{ 'hours' | translate }}
+            </p>
+          </ion-card-header>
+
+          <!-- <ion-card-content>
+            <p>
+              Designing and developing static or dynamic responsive website. Using
+              CMS like Wordpress, Joomla, opencart and e-commerce when needed.
+              Using 5/CSS3 jquery, javascript.. Designing PSD when required,
+              slicing and coding. PHP when required. Managing Hosting server and
+              mail servers. Using SEO, Google analytic, when required
+            </p>
+          </ion-card-content> -->
+
+          <ion-row>
+            <ion-col class="moreBtn">
+              <button ion-button icon-start clear small (click)="GoToJobDetailsPage(item)">
+                <ion-icon name="ios-more"></ion-icon>&nbsp;&nbsp;
+                <div>{{ "more" | translate }}</div>
+              </button>
+            </ion-col>
+            <ion-col class="{{ 'dateBtn' | translate }}">
+              <ion-note> {{item.dailyWorkHours}} {{'ago'|translate}} </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+
+        <ion-infinite-scroll (ionInfinite)="doInfiniteForJob($event)" *ngIf="pageNumJob < TotalPageNumberJobs">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Please Wait...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ng-container>
+      <div class="noResultImg" *ngIf="arrayJobs.length ==0">
+        <img src="./assets/imgs/noSearchResult.jpg" alt="No Search Result">
+        <p>{{ "noResult" | translate }}</p>
+      </div>
+
+    </ion-list>
+
+
+    <!-- End jobs tab -->
+
+
+    <!-- Start labores tab http://localhost:8080/Dolphin_Services/userservices/getprofileimage?imgetkn= -->
+    <ion-list *ngSwitchCase="'labores'">
+      <ng-container *ngIf="arraylaborers.length !=0">
+        <ion-card class="animated bounceInUp" *ngFor="let item of arraylaborers">
+          <ion-item>
+            <ion-avatar item-start>
+              <img *ngIf="item.profileImage !=null" src="{{imgeUrl}}{{item.profileImage}}" />
+              <img *ngIf="item.profileImage ==null" src="./assets/imgs/avater.png" />
+            </ion-avatar>
+            <h2>{{item.employeeName}}</h2>
+            <p>{{item.jobTitle}}</p>
+            <p>
+              <span>{{ "salary" | translate }}</span>&nbsp;&nbsp;{{item.salary}} {{ "egp" | translate }}
+            </p>
+          </ion-item>
+
+          <ion-row class="downlodeRow">
+            <ion-col col-9>
+              <p>{{item.cvName}}</p>
+            </ion-col>
+            <ion-col col-3 class="{{ 'downlodeIcon' | translate }}">
+              <button ion-button icon-end clear small (click)="downloadCV(item)">
+                <ion-icon name="download"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+
+
+
+        <ion-infinite-scroll (ionInfinite)="doInfiniteForlabores($event)" *ngIf="pageNumLabores < TotalPageNumberLaborers">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ng-container>
+      <div class="noResultImg" *ngIf="arraylaborers.length ==0">
+        <img src="./assets/imgs/noSearchResult.jpg" alt="No Search Result">
+        <p>{{ "noResult" | translate }}</p>
+      </div>
+
+
+    </ion-list>
+    <!-- End labores tab -->
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-segment [(ngModel)]="jobs">
+    <!-- Start jobs tab -->
+    <ion-segment-button value="jobs" (click)="ResetLaborares()">
+      <ion-icon name="ios-briefcase"></ion-icon>&nbsp;&nbsp;
+      <span>{{ "jobs" | translate }} </span>
+    </ion-segment-button>
+
+    <!-- Start labores tab -->
+    <ion-segment-button value="labores" (click)="ResetJob()">
+      <ion-icon name="ios-people"></ion-icon>&nbsp;&nbsp;
+      <span>{{ "labores" | translate }}</span>
+    </ion-segment-button>
+  </ion-segment>
+</ion-footer>

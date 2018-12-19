@@ -1,0 +1,78 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'tradingAgencies' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<!-- Start Trading Agencies Service -->
+<ion-content>
+
+  <form [formGroup]="tradingForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label stacked>{{ 'activity' | translate }}</ion-label>
+          <ion-input type="text" formControlName="activity" [(ngModel)]="Activity" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('activity', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('activity', 'maxlength')">{{ 'MaxLenght50' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('activity', 'pattern')">{{ 'BadNameFormat' | translate }}</p>
+
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-label stacked>{{ 'requiredBrand' | translate }}</ion-label>
+          <ion-input type="text" formControlName="requiredBrand" [(ngModel)]="RequiredBrand" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('requiredBrand', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('requiredBrand', 'maxlength')">{{ 'MaxLenght50' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'location' | translate }}</ion-label>
+          <ion-input type="text" formControlName="location" [(ngModel)]="Location" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('location', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('location', 'maxlength')">{{ 'MaxLenght120' | translate }}</p>
+        </ion-col>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'productDescription' | translate }}</ion-label>
+          <ion-input type="text" formControlName="productDescription" [(ngModel)]="ProductDescription" required></ion-input>
+          <p class="validationHint" *ngIf="hasError('productDescription', 'required')">{{ 'require' | translate }}</p>
+          <p class="validationHint" *ngIf="hasError('productDescription', 'maxlength')">{{ 'MaxLenght120' | translate
+            }}</p>
+        </ion-col>
+
+        <ion-list class="fieldTitle">
+          <ion-label stacked>{{ "productImg" | translate }}</ion-label>
+          <ion-item class="changeImg">
+            <!-- <p>{{ 'productImg' | translate }}</p>
+            <button ion-button outline (click)="takePicture(camera.PictureSourceType.PHOTOLIBRARY)">{{ 'uploadFile' |
+              translate }}</button>
+            <span>{{ picname1 != ''? picname1 : ('NoFileChosen' | translate) }}</span> -->
+
+            <ion-thumbnail item-start>
+              <img *ngIf="path1 != ''" src="{{path1}}" />
+              <img *ngIf="path1 == ''" src="./assets/imgs/defaultImg.jpg" />
+            </ion-thumbnail>
+            <button ion-button outline (click)="takePicture(camera.PictureSourceType.PHOTOLIBRARY)">
+              {{ "uploadPhoto" | translate }}
+            </button>
+
+          </ion-item>
+        </ion-list>
+
+        <ion-col col-12>
+          <ion-label stacked>{{ 'others' | translate }}&nbsp;<span class="optionSpan">{{ 'optional' | translate }}</span></ion-label>
+          <ion-textarea formControlName="others" [(ngModel)]="Others"></ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <button ion-button block class="sendbtn" (click)="tradingService()" [disabled]="!tradingForm.valid ">{{'send' |
+      translate}}</button>
+  </form>
+
+</ion-content>
+<!-- End Trading AgenciesService -->

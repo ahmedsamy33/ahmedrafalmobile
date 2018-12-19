@@ -1,0 +1,100 @@
+<!--
+  Generated template for the JobDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'jobDetails' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card class="animated bounceInUp">
+    <h2>
+      <ion-icon name="ios-briefcase"></ion-icon>&nbsp;&nbsp;{{getUserDetails.jobTitle}}
+    </h2>
+    <p>
+      <ion-icon name="pin"></ion-icon>&nbsp;&nbsp;{{getUserDetails.region}}
+    </p>
+    <p>
+      <ion-icon name="calendar"></ion-icon>&nbsp;&nbsp;
+      <span>{{ 'experianceYears' | translate }}</span>&nbsp;
+      {{getUserDetails.yearsOfExperience}} {{ 'year' | translate }}
+    </p>
+    <p>
+      <ion-icon name="cash"></ion-icon>&nbsp;&nbsp;
+      <span>{{ 'salary' | translate }}</span>&nbsp;
+      {{getUserDetails.salary}} {{ 'egp' | translate }}
+    </p>
+    <p>
+      <ion-icon name="time"></ion-icon>&nbsp;&nbsp;
+      <span>{{ 'DailyHours' | translate }}</span>&nbsp;
+      <!-- 9 {{ 'am' | translate }} - 5 {{ 'pm' | translate }} -->
+
+      {{getInfo.dailyWorkHours}}
+    </p>
+
+  </ion-card>
+
+  <ion-card class="animated bounceInUp">
+    <h5>{{ 'jobDescription' | translate }}</h5>
+    <p>{{getUserDetails.other}}
+    </p>
+  </ion-card>
+
+  <ion-card class="animated bounceInUp">
+    <h5>{{ 'skills' | translate }}</h5>
+    <ul>
+      <li>{{getUserDetails.skills}}</li>
+      <!-- <li>Act as liaison between customers and the technical team</li>
+      <li>Onboard new customers</li>
+      <li>Increase interaction with current customers</li>
+      <li>Respond to customer inquiries via phone, email, or chat in a timely manner</li>
+      <li>Create, manage, and follow up on customer tickets until they are resolved</li>
+      <li>Record all activities using our current CRM to enhance visibility</li>
+      <li>Follow the current internal customer success process and improve on it</li> -->
+    </ul>
+  </ion-card>
+
+  <ion-card class="animated bounceInUp">
+    <h5>{{ 'requireQualification' | translate }}</h5>
+    <ul>
+      <li>{{getUserDetails.requiredQualifications}}</li>
+      <!-- <li>Previous customer support experience preferred</li>
+      <li>Excellent written and verbal communication skills</li>
+      <li>Strong organizational skills</li> -->
+    </ul>
+  </ion-card>
+
+  <ion-card class="{{ 'contactData' | translate }} animated bounceInUp">
+    <ion-label>
+      <ion-icon name="md-globe"></ion-icon>&nbsp;
+      {{ 'website' | translate }}
+    </ion-label>
+    <p><a (click)="openUrl()">www.rafalgroup.net</a></p>
+
+    <ion-label>
+      <ion-icon name="ios-phone-portrait-outline"></ion-icon>&nbsp;
+      {{ 'phone' | translate }}
+    </ion-label>
+    <p class="telNo">+20 109 413 2184</p>
+
+    <ion-label>
+      <ion-icon name="ios-at-outline"></ion-icon>&nbsp;
+      {{ 'email' | translate }}
+    </ion-label>
+    <p>admin@rafalgroup.net</p>
+
+    <ion-label>
+      <ion-icon name="ios-pin-outline"></ion-icon>&nbsp;
+      {{ 'address' | translate }}
+    </ion-label>
+    <p>شبين الكوم شارع الجلاء البحري برج هيلتون.الدور السادس</p>
+  </ion-card>
+
+</ion-content>

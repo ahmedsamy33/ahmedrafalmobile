@@ -1,0 +1,46 @@
+page-home {
+  ion-grid {
+    .row {
+      .col {
+        .card {
+          background: #f3f3f3;
+          box-shadow: 0 3px 20px 0px #d4d4d4;
+          padding: 12px;
+          margin: 5px;
+          width: 95%;
+          height: 95%;
+
+          .secIcon {
+            color: $sec-color;
+            font-size: $main-font-size * 2;
+          }
+
+          img {
+            width: 55%;
+            margin: 0 auto;
+          }
+
+          .label {
+            font-weight: 500;
+            color: $text-color;
+            font-size: $main-font-size - 2;
+            white-space: normal;
+            line-height: 17px;
+          }
+
+          .arrowIcon-ar {
+            position: absolute;
+            left: 20px;
+            color: $main-color;
+            font-size: $main-font-size * 2 + 1;
+          }
+
+          .arrowIcon-en {
+            right: 20px;
+            left: auto;
+          }
+        }
+      }
+    }
+  }
+}
