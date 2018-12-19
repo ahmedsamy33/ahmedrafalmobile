@@ -1,0 +1,7 @@
+{
+  "name": "rafal",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
