@@ -1,0 +1,34 @@
+// bukra Font
+// Google
+// Apache License, version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0.html
+
+$bukra-font-path: $font-path !default;
+
+@font-face {
+  font-family: "bukra";
+  font-style: normal;
+  font-weight: 300;
+  src: local("bukra Light"), local("bukra-Light"), url("#{$bukra-font-path}/bukra-light.woff2") format("woff2"), url("#{$bukra-font-path}/bukra-light.woff") format("woff"), url("#{$bukra-font-path}/bukra-light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "bukra";
+  font-style: normal;
+  font-weight: 400;
+  src: local("bukra"), local("bukra-Regular"), url("#{$bukra-font-path}/bukra-regular.woff2") format("woff2"), url("#{$bukra-font-path}/bukra-regular.woff") format("woff"), url("#{$bukra-font-path}/bukra-regular.ttf") format("truetype");
+}
+
+// @font-face {
+//   font-family: "bukra";
+//   font-style: normal;
+//   font-weight: 500;
+//   src: local("bukra Medium"), local("bukra-Medium"), url("#{$bukra-font-path}/bukra-medium.woff2") format("woff2"), url("#{$bukra-font-path}/bukra-medium.woff") format("woff"), url("#{$bukra-font-path}/bukra-medium.ttf") format("truetype");
+// }
+
+@font-face {
+  font-family: "bukra";
+  font-style: normal;
+  font-weight: 700;
+  src: local("bukra Bold"), local("bukra-Bold"), url("#{$bukra-font-path}/bukra-bold.woff2") format("woff2"), url("#{$bukra-font-path}/bukra-bold.woff") format("woff"), url("#{$bukra-font-path}/bukra-bold.ttf") format("truetype");
+}
